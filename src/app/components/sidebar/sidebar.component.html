@@ -1,0 +1,28 @@
+<div class="sidebar-header">
+  <h2 class="sidebar-title" *ngIf="!isCollapsed">QA Dashboard</h2>
+  <button mat-icon-button (click)="toggleSidebar()" aria-label="Toggle sidebar">
+    <mat-icon>{{ isCollapsed ? 'chevron_right' : 'chevron_left' }}</mat-icon>
+  </button>
+</div>
+
+<mat-nav-list>
+  <a mat-list-item routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+    <mat-icon>home</mat-icon>
+    <span class="nav-text" *ngIf="!isCollapsed">Home</span>
+  </a>
+  <a mat-list-item routerLink="/metrics" routerLinkActive="active-link">
+    <mat-icon>bar_chart</mat-icon> <!-- Or 'analytics', 'query_stats' -->
+    <span class="nav-text" *ngIf="!isCollapsed">Metrics</span>
+  </a>
+  <a mat-list-item routerLink="/framework" routerLinkActive="active-link">
+    <mat-icon>build</mat-icon> <!-- Or 'science', 'biotech' -->
+    <span class="nav-text" *ngIf="!isCollapsed">Framework</span>
+  </a>
+</mat-nav-list>
+
+<!-- Placeholder for potential future sections like user profile -->
+<!--
+<div class="sidebar-footer" *ngIf="!isCollapsed">
+  User Profile Area
+</div>
+-->

@@ -1,0 +1,33 @@
+:host {
+  display: block;
+  height: 100vh; // Ensure the app takes full viewport height
+  width: 100vw; // Ensure the app takes full viewport width
+  overflow: hidden; // Prevent scrollbars on the main container
+}
+
+.app-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar {
+  width: 200px; // Adjust width as needed, based on the image
+  flex-shrink: 0; // Prevent sidebar from shrinking
+  background-color: #3a4a3a; // Dark green, approximating the image - adjust if needed
+  color: white; // Text color for sidebar
+  padding: 1rem;
+  box-sizing: border-box;
+  // Add more styles for sidebar content later
+}
+
+.main-content {
+  flex-grow: 1; // Allow main content to take remaining space
+  padding: 1.5rem; // Add some padding around the content area
+  box-sizing: border-box;
+  overflow-y: auto; // Allow scrolling within the main content if needed
+  background-color: #f4f4f4; // Light background for content area, approximating image
+}
+
+// Remove default Angular main styles if they conflict
+// (The default styles were removed from app.component.html)

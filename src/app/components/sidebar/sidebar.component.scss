@@ -1,0 +1,116 @@
+@use '@angular/material' as mat;
+@use '@angular/material/core/theming/palette' as palette;
+
+$expanded-width: 240px; // Adjust as needed
+$collapsed-width: 70px; // Adjust as needed
+$sidebar-bg: #1e1e1e; // Dark background like the example
+$text-color: #e0e0e0; // Light text
+$icon-color: #bdbdbd; // Slightly dimmer icon color
+$active-bg: rgba(255, 255, 255, 0.1); // Background for active/hover
+$active-indicator: #5c6bc0; // Using a static indigo color instead of the palette function
+
+:host {
+  display: block;
+  width: $expanded-width;
+  height: 100%;
+  background-color: $sidebar-bg;
+  color: $text-color;
+  transition: width 0.3s ease-in-out;
+  overflow: hidden; // Hide content that overflows during transition
+  display: flex;
+  flex-direction: column;
+
+  &.collapsed {
+    width: $collapsed-width;
+
+    .sidebar-header {
+      justify-content: center; // Center the toggle button when collapsed
+    }
+
+    a.mat-list-item {
+      justify-content: center; // Center icon when collapsed
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  height: 64px; // Standard toolbar height
+  box-sizing: border-box;
+  flex-shrink: 0;
+
+  .sidebar-title {
+    margin: 0;
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  button.mat-icon-button {
+    color: $icon-color;
+  }
+}
+
+mat-nav-list {
+  padding-top: 8px;
+  flex-grow: 1; // Allow list to take remaining space
+  overflow-y: auto; // Add scroll if needed for many items
+
+  .mat-list-item {
+    color: white;
+    height: 48px; // Consistent item height
+    margin: 4px 8px; // Add some horizontal margin
+    padding: 0 16px; // Padding for icon and text
+    border-radius: 8px; // Rounded corners for items
+    display: flex;
+    align-items: center;
+    white-space: nowrap; // Prevent text wrapping
+    transition: background-color 0.2s ease;
+
+    mat-icon {
+      margin-right: 8px;
+    }
+
+    .nav-text {
+      margin-left: 8px;
+    }
+
+    &:hover {
+      background-color: $active-bg;
+    }
+
+    &.active-link {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+// Styles specific to collapsed state handled via :host(.collapsed) above
+// Ensure text and unnecessary elements are hidden smoothly
+:host(.collapsed) {
+  .sidebar-title {
+    display: none; // Hide title when collapsed
+  }
+
+  a.mat-list-item {
+    mat-icon {
+      margin-right: 0; // Remove margin when text is hidden
+    }
+    .nav-text {
+       opacity: 0; // Fade out text
+       width: 0; // Collapse width
+       overflow: hidden; // Hide overflow
+    }
+  }
+}
+
+// Optional: Footer styling if added later
+// .sidebar-footer {
+//   padding: 16px;
+//   flex-shrink: 0;
+//   border-top: 1px solid rgba(255, 255, 255, 0.1);
+// }
